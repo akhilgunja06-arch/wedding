@@ -54,7 +54,7 @@ export function SaptaPadhi() {
       };
 
   return (
-    <Section id="saptapadhi" labelledBy="saptapadhi-heading" className="overflow-hidden">
+    <Section id="saptapadhi" slide={5} labelledBy="saptapadhi-heading" className="overflow-hidden">
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,33,31,0.78),rgba(5,44,41,0.42)_48%,rgba(3,18,28,0.85))]" />
         <div className="absolute left-1/2 top-1/3 h-[60vmin] w-[60vmin] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,180,71,0.14),transparent_65%)]" />
@@ -78,6 +78,8 @@ export function SaptaPadhi() {
           <div
             className="ornate-card relative overflow-hidden rounded-[2rem] px-3 pb-7 pt-6 sm:px-9 sm:pb-9 sm:pt-8"
             role="group"
+            tabIndex={0}
+            data-local-keys
             aria-label="Sapta Padhi — the seven sacred steps"
             onKeyDown={(event) => {
               if (event.key === 'ArrowRight') {
@@ -101,6 +103,7 @@ export function SaptaPadhi() {
                     key={item.number}
                     type="button"
                     onClick={() => goTo(stepIndex)}
+                    data-click-effect
                     aria-label={`Step ${stepIndex + 1}: ${item.title} (${item.vowWordLatin})`}
                     aria-current={active ? 'step' : undefined}
                     className={`group flex min-h-[3rem] min-w-[2.2rem] flex-col items-center justify-center gap-1 rounded-xl px-0.5 transition-colors duration-300 sm:min-w-[3rem] sm:px-1 ${

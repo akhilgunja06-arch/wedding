@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { PhotoLibraryProvider } from './lib/photoLibrary';
 import { MusicProvider } from './lib/music';
 import { DevotionalBackground } from './components/ui/DevotionalBackground';
-import { ScrollDots, ScrollProgress, TopBar } from './components/ui/Navigation';
+import { ScrollProgress, TopBar } from './components/ui/Navigation';
 import { PetalCanvas } from './components/effects/PetalCanvas';
+import { ClickEffects } from './components/effects/ClickEffects';
+import { SlideDeck } from './components/ui/SlideDeck';
 import { MusicPlayer } from './components/ui/MusicPlayer';
 import { PhotoManager, PhotoManagerButton } from './components/admin/PhotoManager';
 import { Blessing } from './components/sections/Blessing';
@@ -33,8 +35,8 @@ export default function App() {
         <DevotionalBackground />
         <ScrollProgress />
         <TopBar />
-        <ScrollDots />
         <PetalCanvas />
+        <ClickEffects />
 
         <main>
           <Blessing />
@@ -42,13 +44,14 @@ export default function App() {
           <Hero />
           <CoupleIntro />
           <Details />
-          <Venue />
           <SaptaPadhi />
+          <Venue />
           <Gallery onOpenManager={() => setPhotoManagerOpen(true)} />
           <Family />
           <Finale />
         </main>
 
+        <SlideDeck />
         <MusicPlayer />
         <PhotoManagerButton onClick={() => setPhotoManagerOpen(true)} />
         <PhotoManager open={photoManagerOpen} onClose={() => setPhotoManagerOpen(false)} />

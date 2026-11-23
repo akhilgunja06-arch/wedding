@@ -85,7 +85,7 @@ export function Gallery({ onOpenManager }: { onOpenManager: () => void }) {
     filter === 'all' ? ['groom', 'bride', 'couple'] : [filter];
 
   return (
-    <Section id="gallery" labelledBy="gallery-heading">
+    <Section id="gallery" slide={7} labelledBy="gallery-heading">
       <div className="mx-auto w-full max-w-6xl">
         <SectionHeading
           id="gallery-heading"

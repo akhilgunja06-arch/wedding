@@ -20,7 +20,7 @@ export function Venue() {
   };
 
   return (
-    <Section id="venue" labelledBy="venue-heading" className="overflow-hidden">
+    <Section id="venue" slide={6} labelledBy="venue-heading" className="overflow-hidden">
       <div className="mx-auto w-full max-w-6xl">
         <SectionHeading
           id="venue-heading"

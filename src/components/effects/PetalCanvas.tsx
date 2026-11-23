@@ -155,6 +155,27 @@ export function PetalCanvas() {
       if (petals.length > 220) petals = petals.slice(-220);
     };
 
+    const goldBurst = (event: Event) => {
+      const detail = (event as CustomEvent<{ x?: number; y?: number }>).detail ?? {};
+      const originX = detail.x ?? width / 2;
+      const originY = detail.y ?? height / 2;
+      const angle = Math.random() * Math.PI * 2;
+      for (let index = 0; index < 26; index += 1) {
+        const particle = makePetal(width, height, true);
+        const spread = angle + (index / 26) * Math.PI * 2;
+        const speed = 1.1 + Math.random() * 2.6;
+        particle.x = originX;
+        particle.y = originY;
+        particle.vx = Math.cos(spread) * speed;
+        particle.vy = Math.sin(spread) * speed - 0.7;
+        particle.size = 0.7 + Math.random() * 1.9;
+        particle.opacity = 0.55 + Math.random() * 0.4;
+        particle.life = 1;
+        petals.push(particle);
+      }
+      if (petals.length > 260) petals = petals.slice(-260);
+    };
+
     const onVisibility = () => {
       if (document.hidden) {
         running = false;
@@ -170,6 +191,7 @@ export function PetalCanvas() {
     frame = requestAnimationFrame(step);
     window.addEventListener('resize', resize);
     window.addEventListener('wedding:petals', burst);
+    window.addEventListener('wedding:goldburst', goldBurst);
     document.addEventListener('visibilitychange', onVisibility);
 
     return () => {
@@ -177,6 +199,7 @@ export function PetalCanvas() {
       cancelAnimationFrame(frame);
       window.removeEventListener('resize', resize);
       window.removeEventListener('wedding:petals', burst);
+      window.removeEventListener('wedding:goldburst', goldBurst);
       document.removeEventListener('visibilitychange', onVisibility);
     };
   }, [reduced]);
@@ -194,4 +217,9 @@ export function PetalCanvas() {
 
 export function burstPetals(x?: number, y?: number) {
   window.dispatchEvent(new CustomEvent('wedding:petals', { detail: { x, y } }));
+}
+
+/** Small golden particle burst used for button and slide transitions. */
+export function burstGold(x?: number, y?: number) {
+  window.dispatchEvent(new CustomEvent('wedding:goldburst', { detail: { x, y } }));
 }

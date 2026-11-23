@@ -7,17 +7,21 @@ export function Section({
   children,
   className = '',
   labelledBy,
+  slide,
 }: {
   id: string;
   children: ReactNode;
   className?: string;
   labelledBy?: string;
+  /** Slide chapter used by the slide deck progress indicator. */
+  slide?: number;
 }) {
   return (
     <section
       id={id}
+      data-slide={slide}
       aria-labelledby={labelledBy}
-      className={`relative isolate z-10 px-5 py-20 sm:px-8 sm:py-24 md:py-28 ${className}`}
+      className={`slide-section relative isolate z-10 px-5 py-20 sm:px-8 sm:py-24 md:py-28 ${className}`}
     >
       <div
         className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(4,30,30,0.58),rgba(4,28,32,0.44)_48%,rgba(3,18,28,0.64))]"

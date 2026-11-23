@@ -54,6 +54,7 @@ export function Hero() {
   return (
     <section
       id="invitation"
+      data-slide="2"
       aria-labelledby="invitation-heading"
       className="relative z-10 flex min-h-[100svh] items-center overflow-hidden px-4 pb-28 pt-24 sm:px-8 sm:pb-20 lg:py-28"
     >

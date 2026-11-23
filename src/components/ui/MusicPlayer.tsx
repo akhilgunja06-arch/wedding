@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Loader2, Music2, Pause, Play, Volume2 } from 'lucide-react';
+import { Loader2, Music2, Pause, Play, Volume2, VolumeX } from 'lucide-react';
 import { useMusic } from '../../lib/music';
 import { wedding } from '../../config/wedding';
 
@@ -7,21 +7,42 @@ export function MusicPlayer() {
   const { playing, loading, volume, mode, error, start, stop, setVolume } = useMusic();
   const [musicOn, setMusicOn] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const [lastVolume, setLastVolume] = useState<number>(wedding.music.defaultVolume);
+  const [nearTop, setNearTop] = useState(true);
+  const muted = volume === 0;
+
+  useEffect(() => {
+    const onScroll = () => setNearTop(window.scrollY < window.innerHeight * 0.55);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   // Music can also be started from the opening screen; keep the switch in sync.
   useEffect(() => {
-    if (playing) setMusicOn(true);
+    setMusicOn(playing);
   }, [playing]);
 
   const status = loading
     ? 'Starting…'
     : playing
-      ? mode === 'generated'
-        ? 'Live ambience'
-        : 'Now playing'
+      ? muted
+        ? 'Muted'
+        : mode === 'generated'
+          ? 'Live ambience'
+          : 'Now playing'
       : musicOn
         ? 'Paused'
         : 'Music off';
+
+  const toggleMute = () => {
+    if (muted) {
+      setVolume(lastVolume > 0 ? lastVolume : wedding.music.defaultVolume);
+    } else {
+      setLastVolume(volume);
+      setVolume(0);
+    }
+  };
 
   const handlePlayPause = async () => {
     if (playing) {
@@ -44,7 +65,11 @@ export function MusicPlayer() {
   };
 
   return (
-    <div className="fixed bottom-3 left-3 z-[70] max-w-[calc(100vw-6rem)] sm:bottom-6 sm:left-6">
+    <div
+      className={`fixed bottom-3 left-3 z-[70] max-w-[calc(100vw-6rem)] sm:bottom-6 sm:left-6 ${
+        nearTop ? 'max-xl:hidden' : ''
+      }`}
+    >
       <div
         className={`glass flex items-center gap-1.5 overflow-hidden rounded-full py-1.5 pl-1.5 pr-1.5 shadow-[0_18px_40px_-24px_rgba(0,0,0,0.95)] transition-all duration-500 sm:gap-2 sm:pr-2 ${
           expanded ? 'sm:pr-3' : ''
@@ -65,7 +90,7 @@ export function MusicPlayer() {
           ) : (
             <Play className="h-4 w-4 translate-x-[1px]" aria-hidden="true" />
           )}
-          {playing && (
+          {playing && !muted && (
             <span
               className="absolute inset-0 animate-ping rounded-full border border-gold-200/50"
               aria-hidden="true"
@@ -99,12 +124,35 @@ export function MusicPlayer() {
           </span>
         </div>
 
+        {playing && !muted && (
+          <span className="music-eq hidden sm:flex" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+          </span>
+        )}
+
+        <button
+          type="button"
+          onClick={toggleMute}
+          data-click-effect
+          className="grid h-8 w-8 shrink-0 place-items-center rounded-full text-gold-300/80 transition-colors hover:bg-gold-200/10 hover:text-gold-100"
+          aria-label={muted ? 'Unmute wedding music' : 'Mute wedding music'}
+          aria-pressed={muted}
+          title={muted ? 'Unmute music' : 'Mute music'}
+        >
+          {muted ? (
+            <VolumeX className="h-4 w-4" aria-hidden="true" />
+          ) : (
+            <Volume2 className="h-4 w-4" aria-hidden="true" />
+          )}
+        </button>
+
         <div
           className={`flex items-center gap-2 overflow-hidden transition-all duration-500 ${
             expanded ? 'max-w-[7rem] opacity-100' : 'max-w-0 opacity-0'
           }`}
         >
-          <Volume2 className="h-3.5 w-3.5 shrink-0 text-gold-300/70" aria-hidden="true" />
           <input
             type="range"
             min={0}
@@ -124,7 +172,7 @@ export function MusicPlayer() {
           aria-label={expanded ? 'Hide volume control' : 'Show volume control'}
           aria-expanded={expanded}
         >
-          <Volume2 className="h-4 w-4" aria-hidden="true" />
+          <span className="text-[0.55rem] uppercase tracking-[0.1em]">Vol</span>
         </button>
       </div>
 
