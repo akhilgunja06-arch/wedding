@@ -35,7 +35,7 @@ function InfoTile({
 
 export function Details() {
   return (
-    <Section id="details" labelledBy="details-heading">
+    <Section id="details" slide={4} labelledBy="details-heading">
       <div className="mx-auto w-full max-w-5xl">
         <SectionHeading
           id="details-heading"

@@ -25,7 +25,7 @@ export function Family() {
   ];
 
   return (
-    <Section id="family" labelledBy="family-heading" className="overflow-hidden">
+    <Section id="family" slide={7} labelledBy="family-heading" className="overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-0" aria-hidden="true">
         <TempleArch className="absolute -bottom-24 left-1/2 h-[42rem] w-auto -translate-x-1/2" opacity={0.12} />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_20%,rgba(201,162,39,0.12),transparent_60%)]" />

@@ -6,25 +6,32 @@ This site uses real, licensed assets. Nothing below is a placeholder.
 
 ### Sri Venkateswara Swamy
 
-* **File:** `public/images/venkateswara.jpg`, `public/images/venkateswara.webp`
+* **File:** `public/images/venkateswara-duo.jpg`, `public/images/venkateswara-duo.webp`
 * **Original:** [Lord Venkateswara Swamy](https://commons.wikimedia.org/wiki/File:Lord_Venkateswara_Swamy.jpg) on Wikimedia Commons
 * **Author:** [Megala Shankar](https://commons.wikimedia.org/wiki/User:Megala_Shankar)
 * **Licence:** [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/)
-* **Changes:** cropped to a 3:4 portrait, resized to 900 × 1200, and adjusted for brightness, contrast, colour balance and clarity. No faces, ornaments or religious symbols were altered.
+* **Changes:** cropped to a 3:4 portrait, resized to 600 × 800, and adjusted for brightness, contrast, colour balance and clarity. No faces, ornaments or religious symbols were altered.
 
 This photograph of the Tirumala Moolavirat is the centrepiece of the opening blessing.
 
 ### Sri Padmavathi Ammavaru
 
-* **File:** `public/images/padmavathi.jpg`, `public/images/padmavathi.webp`
+* **File:** `public/images/padmavathi-duo.jpg`, `public/images/padmavathi-duo.webp`
 * **Original:** [Goddess Padmavati](https://commons.wikimedia.org/wiki/File:Goddess_Padmavati.jpg) on Wikimedia Commons
 * **Author:** [Banksboomer](https://commons.wikimedia.org/wiki/User:Banksboomer)
 * **Licence:** [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/)
-* **Changes:** cropped to a 3:4 portrait, resized to 900 × 1200, and adjusted for brightness, contrast, colour balance and clarity. No faces, ornaments or religious symbols were altered.
+* **Changes:** cropped to a 3:4 portrait, resized to 600 × 800, and adjusted for brightness, contrast, colour balance and clarity. No faces, ornaments or religious symbols were altered.
 
 **Note:** the site labels this image as *traditional artwork*, not a photograph. No freely licensed photograph of the Sri Padmavathi Ammavaru Moolavirat at Tiruchanur could be verified, so a licensed devotional artwork is used rather than an AI-generated or invented depiction. The same is stated on the deity card itself.
 
 The adapted images above remain available under CC BY-SA 4.0. The credit line beneath each image on the site links back to the original Wikimedia Commons file page.
+
+### Social preview composite
+
+* **File:** `public/images/og-wedding.jpg`
+* **Source:** a 1200 × 630 composite of the two adapted deity images above, with the wedding names and date.
+* **Licence:** the same CC BY-SA 4.0 terms and credits as the two source images apply.
+
 
 ## Devotional background photographs
 

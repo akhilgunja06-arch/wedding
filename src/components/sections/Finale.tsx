@@ -10,6 +10,7 @@ export function Finale() {
     <>
       <section
         id="finale"
+        data-slide="8"
         aria-labelledby="finale-heading"
         className="relative z-10 overflow-hidden px-5 pb-20 pt-24 sm:px-8 sm:pt-28"
       >
