@@ -1,104 +1,172 @@
-import { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Music2 } from 'lucide-react';
 import { wedding } from '../../config/wedding';
-import { GoldDivider, Gopuram, NamamEmblem, Diya, Lotus } from '../ui/Ornaments';
-import { MandapBackdrop } from '../ui/Backdrops';
+import { useMusic } from '../../lib/music';
+import { DeityImage } from '../ui/DeityImage';
+import { ArchCrown, Torana } from '../ui/TempleOrnaments';
+import { Diya, Gopuram, Lotus } from '../ui/Ornaments';
+import { burstPetals } from '../effects/PetalCanvas';
+
+const venkateswara = wedding.deities[0];
+const padmavathi = wedding.deities[1];
 
 export function Blessing() {
   const reduced = useReducedMotion();
-  const [artworkFailed, setArtworkFailed] = useState(false);
-  const showArtwork = Boolean(wedding.artwork.venkateswaraImage) && !artworkFailed;
+  const { playing, loading, start } = useMusic();
+
+  const fade = (delay: number, y = 22) =>
+    reduced
+      ? {}
+      : {
+          initial: { opacity: 0, y },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 1.1, delay, ease: [0.2, 0.8, 0.2, 1] as const },
+        };
+
+  const enter = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    burstPetals(window.innerWidth / 2, window.innerHeight * 0.7);
+    document
+      .getElementById('invitation')
+      ?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+  };
 
   return (
     <section
       id="blessings"
       aria-labelledby="blessings-heading"
-      className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-5 pb-16 pt-24 text-center sm:px-8"
+      className="opening relative z-10 flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-4 pb-[var(--open-pad-bottom)] pt-[var(--open-pad-top)] text-center sm:px-8"
     >
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <MandapBackdrop className="absolute inset-0 h-full w-full opacity-40" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_35%,rgba(255,206,110,0.22),transparent_58%)]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-maroon-950/70 via-transparent to-maroon-950" />
-        <div
-          className="anim-glow absolute left-1/2 top-1/2 h-[70vmin] w-[70vmin] -translate-x-1/2 -translate-y-1/2 rounded-full"
-          style={{
-            background:
-              'conic-gradient(from 0deg, rgba(255,214,140,0.10), transparent 18%, rgba(255,214,140,0.08) 32%, transparent 52%, rgba(255,214,140,0.10) 70%, transparent 88%)',
-          }}
-        />
-        <Gopuram className="absolute -bottom-4 left-2 w-40 opacity-[0.18] sm:left-8 sm:w-56" />
-        <Gopuram className="absolute -bottom-4 right-2 w-40 opacity-[0.18] sm:right-8 sm:w-56" />
-        <div className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 items-end gap-10 opacity-70 sm:flex">
-          <Diya lit className="h-12 w-12" />
-          <Diya lit className="h-14 w-14" />
-          <Diya lit className="h-12 w-12" />
-        </div>
-        {showArtwork && (
-          <img
-            src={wedding.artwork.venkateswaraImage}
-            alt=""
-            className="absolute inset-0 h-full w-full object-cover opacity-25 mix-blend-screen"
-            onError={() => setArtworkFailed(true)}
-            aria-hidden="true"
-          />
-        )}
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,24,25,0.8)_0%,rgba(4,33,31,0.4)_38%,rgba(4,30,32,0.52)_70%,rgba(3,16,25,0.9)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_42%,rgba(255,214,140,0.16),transparent_62%)]" />
+        <Gopuram className="absolute -bottom-6 left-0 w-32 opacity-[0.14] sm:w-44" />
+        <Gopuram className="absolute -bottom-6 right-0 w-32 opacity-[0.14] sm:w-44" />
+        <Diya lit className="absolute bottom-10 left-6 hidden h-10 w-10 opacity-60 lg:block" />
+        <Diya lit className="absolute bottom-10 right-6 hidden h-10 w-10 opacity-60 lg:block" />
       </div>
 
-      <div className="relative z-10 flex w-full max-w-3xl flex-col items-center">
-        <motion.p
-          initial={reduced ? false : { opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.1 }}
-          lang="te"
-          className="font-telugu text-[0.7rem] tracking-[0.3em] text-gold-300/80 sm:text-xs"
-        >
-          శ్రీ వెంకటేశ్వరాయ నమః
-        </motion.p>
-
-        <motion.div
-          initial={reduced ? false : { opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.4, delay: 0.25, ease: [0.2, 0.8, 0.2, 1] }}
-          className="relative mt-6"
-        >
-          <div className="absolute inset-0 -z-10 rounded-full bg-gold-400/20 blur-3xl" />
-          <NamamEmblem className="h-32 w-32 anim-float sm:h-44 sm:w-44" />
+      <div className="relative z-10 flex w-full max-w-4xl flex-col items-center">
+        <motion.div {...fade(0.05, 12)} className="flex flex-col items-center">
+          <Torana className="opening-torana w-48 opacity-80 sm:w-64" />
+          <p lang="te" className="font-telugu mt-2 text-[0.66rem] tracking-[0.3em] text-gold-300/85 sm:text-xs">
+            {wedding.messages.openingMantraTelugu}
+          </p>
         </motion.div>
 
-        <motion.h2
-          id="blessings-heading"
-          lang="te"
-          initial={reduced ? false : { opacity: 0, y: 22 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.55 }}
-          className="font-telugu mt-7 max-w-2xl text-[clamp(1.35rem,4.4vw,2.5rem)] leading-[1.5] text-gold-gradient text-gold-glow"
-        >
-          {wedding.messages.blessingTelugu}
-        </motion.h2>
-
         <motion.p
-          initial={reduced ? false : { opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.75 }}
-          className="body-lux mt-5 max-w-xl text-gold-100/75"
+          {...fade(0.2)}
+          lang="te"
+          className="font-telugu-display mt-[var(--open-gap)] max-w-2xl text-[clamp(1.02rem,3.1vw,1.6rem)] leading-[1.55] text-gold-gradient text-gold-glow"
         >
-          {wedding.messages.blessingEnglish}
+          {wedding.messages.openingBlessingVenkateswaraTelugu}
         </motion.p>
 
         <motion.div
-          initial={reduced ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, delay: 0.95 }}
-          className="mt-8 flex flex-col items-center gap-6"
+          {...fade(0.4, 30)}
+          className="relative mt-[var(--open-gap)] flex w-full items-end justify-center gap-3 sm:gap-7"
         >
-          <Lotus className="h-8 w-16 opacity-70" />
-          <GoldDivider className="w-56 sm:w-80" />
+          <figure className="group relative w-[var(--open-deity)]">
+            <div className="deity-halo" aria-hidden="true" />
+            <div className="deity-rays anim-spin-slower" aria-hidden="true" />
+            <ArchCrown
+              className="absolute -top-5 left-1/2 w-[70%] -translate-x-1/2 opacity-90 sm:-top-6"
+              aria-hidden="true"
+            />
+            <div className="deity-frame relative">
+              <div className="deity-frame__inner relative overflow-hidden rounded-[1.35rem]">
+                <DeityImage
+                  deity={venkateswara}
+                  priority
+                  sizes="(min-width: 1024px) 248px, (min-width: 640px) 220px, 42vw"
+                  className="deity-image aspect-[3/4] w-full object-cover"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(4,33,31,0.18)_0%,transparent_32%,rgba(3,20,22,0.72)_100%)]" />
+                <p
+                  lang="te"
+                  className="font-telugu pointer-events-none absolute inset-x-0 bottom-0 px-2 pb-2 text-[0.58rem] tracking-[0.12em] text-gold-200/90 sm:text-[0.66rem]"
+                >
+                  {venkateswara.mantraTelugu}
+                </p>
+              </div>
+            </div>
+            <figcaption className="mt-3">
+              <p lang="te" className="font-telugu text-[0.68rem] leading-snug text-gold-200/90 sm:text-sm">
+                {venkateswara.teluguName}
+              </p>
+              <p className="mt-0.5 text-[0.48rem] uppercase tracking-[0.24em] text-gold-300/55 sm:text-[0.55rem]">
+                Tirumala
+              </p>
+            </figcaption>
+          </figure>
+
+          <figure className="group relative w-[clamp(4.9rem,23vw,8.4rem)] pb-8 sm:pb-12">
+            <div className="deity-halo opacity-70" aria-hidden="true" />
+            <div className="deity-frame relative">
+              <div className="deity-frame__inner relative overflow-hidden rounded-[1.1rem]">
+                <DeityImage
+                  deity={padmavathi}
+                  priority
+                  sizes="(min-width: 1024px) 152px, (min-width: 640px) 130px, 25vw"
+                  className="deity-image aspect-[3/4] w-full object-cover"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(4,33,31,0.2)_0%,transparent_34%,rgba(3,20,22,0.7)_100%)]" />
+              </div>
+            </div>
+            <figcaption className="mt-2.5">
+              <p lang="te" className="font-telugu text-[0.6rem] leading-snug text-gold-200/90 sm:text-xs">
+                {padmavathi.teluguName}
+              </p>
+              <p className="mt-0.5 text-[0.44rem] uppercase tracking-[0.22em] text-gold-300/55 sm:text-[0.52rem]">
+                Tiruchanur
+              </p>
+            </figcaption>
+          </figure>
+        </motion.div>
+
+        <motion.p
+          {...fade(0.55)}
+          lang="te"
+          className="font-telugu-display mt-[var(--open-gap)] max-w-2xl text-[clamp(0.95rem,2.7vw,1.35rem)] leading-[1.65] text-gold-200/90"
+        >
+          {wedding.messages.openingBlessingPadmavathiTelugu}
+        </motion.p>
+
+        <motion.div {...fade(0.7)} className="mt-[calc(var(--open-gap)*0.75)] flex flex-col items-center">
+          <h1
+            id="blessings-heading"
+            lang="te"
+            className="font-telugu-display text-[clamp(1.65rem,5.6vw,2.7rem)] leading-tight text-gold-gradient text-gold-glow"
+          >
+            {wedding.messages.openingCoupleTelugu}
+          </h1>
+          <p
+            lang="te"
+            className="font-telugu mt-2 text-[clamp(0.95rem,2.6vw,1.25rem)] tracking-[0.14em] text-gold-100/85"
+          >
+            {wedding.messages.openingWelcomeTelugu}
+          </p>
+        </motion.div>
+
+        <motion.div {...fade(0.85)} className="mt-[var(--open-gap)] flex flex-col items-center gap-2.5">
+          <Lotus className="h-6 w-14 opacity-70" />
+          {!playing && (
+            <button
+              type="button"
+              onClick={() => void start()}
+              disabled={loading}
+              className="inline-flex items-center gap-2 rounded-full border border-gold-300/35 bg-peacock-900/50 px-4 py-2 text-[0.58rem] uppercase tracking-[0.22em] text-gold-200/85 backdrop-blur-sm transition-colors hover:border-gold-300/80 hover:text-gold-100 disabled:opacity-60"
+            >
+              <Music2 className="h-3.5 w-3.5" aria-hidden="true" />
+              {loading ? 'Starting…' : wedding.messages.openingMusicPrompt}
+            </button>
+          )}
           <a
             href="#invitation"
-            className="group inline-flex flex-col items-center gap-2 text-[0.6rem] uppercase tracking-[0.32em] text-gold-200/70 transition-colors hover:text-gold-100"
+            onClick={enter}
+            className="group inline-flex flex-col items-center gap-1.5 text-[0.58rem] uppercase tracking-[0.3em] text-gold-200/65 transition-colors hover:text-gold-100"
           >
-            Open the invitation
+            {wedding.messages.openingHint}
             <ChevronDown className="h-5 w-5 animate-bounce text-gold-300" aria-hidden="true" />
           </a>
         </motion.div>

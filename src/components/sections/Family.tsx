@@ -68,7 +68,7 @@ export function Family() {
             <span className="font-display pointer-events-none absolute bottom-0 right-4 text-7xl text-gold-300/10" aria-hidden="true">
               ”
             </span>
-            <Heart className="mx-auto h-5 w-5 fill-rose-500/70 text-rose-500" aria-hidden="true" />
+            <Heart className="mx-auto h-5 w-5 fill-rosegold-500/70 text-rosegold-500" aria-hidden="true" />
             <p className="body-lux mx-auto mt-5 max-w-2xl text-base italic text-gold-100/85 sm:text-lg">
               {wedding.messages.familyMessage}
             </p>

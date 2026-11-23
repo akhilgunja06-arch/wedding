@@ -16,14 +16,14 @@ export function MandapBackdrop({ className = '' }: { className?: string }) {
     >
       <defs>
         <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#f6e8c2" stopOpacity="0.9" />
-          <stop offset="60%" stopColor="#c9a227" stopOpacity="0.5" />
-          <stop offset="100%" stopColor="#7d5f12" stopOpacity="0.15" />
+          <stop offset="0%" stopColor="#f4e6c6" stopOpacity="0.9" />
+          <stop offset="60%" stopColor="#bf944b" stopOpacity="0.5" />
+          <stop offset="100%" stopColor="#755622" stopOpacity="0.15" />
         </linearGradient>
         <radialGradient id={`${id}-light`} cx="50%" cy="45%" r="55%">
-          <stop offset="0%" stopColor="#ffd98a" stopOpacity="0.32" />
-          <stop offset="55%" stopColor="#c9a227" stopOpacity="0.08" />
-          <stop offset="100%" stopColor="#c9a227" stopOpacity="0" />
+          <stop offset="0%" stopColor="#ffdfa0" stopOpacity="0.32" />
+          <stop offset="55%" stopColor="#bf944b" stopOpacity="0.08" />
+          <stop offset="100%" stopColor="#bf944b" stopOpacity="0" />
         </radialGradient>
       </defs>
       <rect width="1200" height="800" fill={`url(#${id}-light)`} />
@@ -75,12 +75,12 @@ export function MapIllustration({ className = '' }: { className?: string }) {
     <svg viewBox="0 0 640 420" className={className} aria-hidden="true" fill="none">
       <defs>
         <linearGradient id={id} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#f6e8c2" />
+          <stop offset="0%" stopColor="#f4e6c6" />
           <stop offset="100%" stopColor="#a9821c" />
         </linearGradient>
         <radialGradient id={`${id}-bg`} cx="50%" cy="50%" r="70%">
-          <stop offset="0%" stopColor="#5c1018" />
-          <stop offset="100%" stopColor="#240507" />
+          <stop offset="0%" stopColor="#0a4741" />
+          <stop offset="100%" stopColor="#04211f" />
         </radialGradient>
         <filter id={glow} x="-60%" y="-60%" width="220%" height="220%">
           <feGaussianBlur stdDeviation="7" />
@@ -113,14 +113,14 @@ export function MapIllustration({ className = '' }: { className?: string }) {
         <rect x="250" y="120" width="46" height="46" rx="6" />
       </g>
       <g opacity="0.9">
-        <circle cx="420" cy="210" r="34" fill="#c9a227" opacity="0.18" filter={`url(#${glow})`} />
+        <circle cx="420" cy="210" r="34" fill="#bf944b" opacity="0.18" filter={`url(#${glow})`} />
         <circle cx="420" cy="210" r="26" stroke={`url(#${id})`} strokeWidth="1" opacity="0.5" />
         <circle cx="420" cy="210" r="16" stroke={`url(#${id})`} strokeWidth="0.8" opacity="0.35" />
         <path
           d="M420 158c-19 0-34 15-34 34 0 25 34 58 34 58s34-33 34-58c0-19-15-34-34-34z"
           fill={`url(#${id})`}
         />
-        <circle cx="420" cy="192" r="11" fill="#35080d" />
+        <circle cx="420" cy="192" r="11" fill="#073834" />
         <circle cx="420" cy="192" r="4.5" fill={`url(#${id})`} />
       </g>
       <g stroke={`url(#${id})`} strokeWidth="1" opacity="0.5">

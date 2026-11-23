@@ -98,7 +98,7 @@ export function Gallery({ onOpenManager }: { onOpenManager: () => void }) {
         <div className="mt-12 grid gap-4 sm:grid-cols-3 sm:gap-5">
           {storyPhotos.map((photo, index) => (
             <Reveal key={photo.id} delay={index * 0.1} className={index === 1 ? 'sm:mt-10' : index === 2 ? 'sm:-mt-4' : ''}>
-              <div className="relative">
+              <div className="relative mx-auto w-full max-w-[19rem]">
                 <Parallax distance={index === 1 ? 24 : 12}>
                   <PhotoFrame
                     photo={photo}
@@ -126,7 +126,7 @@ export function Gallery({ onOpenManager }: { onOpenManager: () => void }) {
                 onClick={() => setFilter(item.id)}
                 aria-pressed={active}
                 className={`relative rounded-full px-5 py-2.5 text-[0.6rem] uppercase tracking-[0.24em] transition-colors duration-300 ${
-                  active ? 'text-maroon-950' : 'text-gold-200/70 hover:text-gold-100'
+                  active ? 'text-peacock-950' : 'text-gold-200/70 hover:text-gold-100'
                 }`}
               >
                 {active && (

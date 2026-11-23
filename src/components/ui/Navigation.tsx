@@ -47,12 +47,14 @@ export function TopBar() {
     <>
       <header
         className={`fixed inset-x-0 top-0 z-[60] transition-all duration-500 ${
-          scrolled ? 'border-b border-gold-200/15 bg-maroon-950/80 backdrop-blur-lg' : 'bg-transparent'
+          scrolled
+            ? 'border-b border-gold-200/15 bg-peacock-950/85 backdrop-blur-lg'
+            : 'bg-gradient-to-b from-peacock-950/75 via-peacock-950/25 to-transparent'
         }`}
       >
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3 sm:px-8">
           <a href="#blessings" className="group flex items-center gap-3" aria-label="Back to the blessings">
-            <span className="relative grid h-10 w-10 place-items-center rounded-full border border-gold-300/40 bg-maroon-900/50">
+            <span className="relative grid h-10 w-10 place-items-center rounded-full border border-gold-300/40 bg-peacock-900/50">
               <span className="font-display text-[0.6rem] tracking-[0.06em] text-gold-200">
                 {wedding.couple.monogram}
               </span>
@@ -71,7 +73,7 @@ export function TopBar() {
           <button
             type="button"
             onClick={() => setMenuOpen(true)}
-            className="inline-flex items-center gap-2 rounded-full border border-gold-200/30 bg-maroon-900/40 px-4 py-2 text-[0.58rem] uppercase tracking-[0.24em] text-gold-200 transition-colors duration-300 hover:border-gold-200/70 hover:bg-gold-200/10"
+            className="inline-flex items-center gap-2 rounded-full border border-gold-200/30 bg-peacock-900/40 px-4 py-2 text-[0.58rem] uppercase tracking-[0.24em] text-gold-200 transition-colors duration-300 hover:border-gold-200/70 hover:bg-gold-200/10"
             aria-expanded={menuOpen}
             aria-controls="wedding-menu"
           >
@@ -88,7 +90,7 @@ export function TopBar() {
             role="dialog"
             aria-modal="true"
             aria-label="Invitation navigation"
-            className="fixed inset-0 z-[80] overflow-y-auto bg-maroon-950/97 backdrop-blur-xl"
+            className="fixed inset-0 z-[80] overflow-y-auto bg-peacock-950/97 backdrop-blur-xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -160,7 +162,7 @@ export function TopBar() {
 
               <div className="mt-6 border-t border-gold-200/10 pt-5 text-center">
                 <p className="flex items-center justify-center gap-2 text-[0.55rem] uppercase tracking-[0.26em] text-gold-200/45">
-                  <Heart className="h-3 w-3 fill-rose-500/70 text-rose-500" aria-hidden="true" />
+                  <Heart className="h-3 w-3 fill-rosegold-500/70 text-rosegold-500" aria-hidden="true" />
                   {wedding.venue.address}
                 </p>
               </div>
@@ -209,7 +211,7 @@ export function ScrollDots() {
             aria-current={isActive ? 'true' : undefined}
             className="group flex items-center gap-2"
           >
-            <span className="pointer-events-none rounded-full border border-gold-200/20 bg-maroon-950/85 px-3 py-1 text-[0.5rem] uppercase tracking-[0.2em] text-gold-200/70 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+            <span className="pointer-events-none rounded-full border border-gold-200/20 bg-peacock-950/85 px-3 py-1 text-[0.5rem] uppercase tracking-[0.2em] text-gold-200/70 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
               {section.label}
             </span>
             <span

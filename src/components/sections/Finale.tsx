@@ -15,7 +15,7 @@ export function Finale() {
       >
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
           <MandapBackdrop className="h-full w-full opacity-45" />
-          <div className="absolute inset-0 bg-gradient-to-b from-maroon-950/85 via-maroon-950/55 to-maroon-950" />
+          <div className="absolute inset-0 bg-gradient-to-b from-peacock-950/85 via-peacock-950/55 to-peacock-950" />
           <div className="absolute left-1/2 top-1/2 h-[70vmin] w-[70vmin] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,206,110,0.16),transparent_65%)]" />
           <TempleArch className="absolute -bottom-32 left-1/2 h-[44rem] w-auto -translate-x-1/2" opacity={0.16} />
           <Gopuram className="absolute -bottom-2 left-0 w-36 opacity-15 sm:w-52" />
@@ -41,7 +41,7 @@ export function Finale() {
           <Reveal delay={0.18} className="mt-6 w-full">
             <p className="font-display flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[clamp(1.7rem,5vw,3.2rem)] tracking-[0.1em] text-gold-100">
               <span>{wedding.couple.bride.name.toUpperCase()}</span>
-              <Heart className="h-5 w-5 fill-rose-500/90 text-rose-500 sm:h-7 sm:w-7" aria-hidden="true" />
+              <Heart className="h-5 w-5 fill-rosegold-500/90 text-rosegold-500 sm:h-7 sm:w-7" aria-hidden="true" />
               <span>{wedding.couple.groom.name.toUpperCase()}</span>
             </p>
             <p className="mt-3 text-[0.62rem] uppercase tracking-[0.32em] text-gold-300/70">
@@ -100,6 +100,17 @@ export function Finale() {
           </p>
           <p className="text-[0.55rem] uppercase tracking-[0.2em] text-gold-200/30">
             {wedding.venue.name} · Mandavalli Mandal · Eluru District · Andhra Pradesh
+          </p>
+          <p className="mt-2 max-w-2xl text-[0.5rem] leading-relaxed tracking-[0.06em] text-gold-200/30">
+            Devotional photographs from Wikimedia Commons (CC BY-SA / CC BY / GODL).{' '}
+            <a
+              href={wedding.music.creditUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="underline-offset-2 transition-colors hover:text-gold-200/70 hover:underline"
+            >
+              Music: {wedding.music.credit}
+            </a>
           </p>
           <a
             href="#blessings"

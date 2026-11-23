@@ -49,7 +49,7 @@ export function PhotoManager({ open, onClose }: { open: boolean; onClose: () => 
         {open && (
           <>
             <motion.div
-              className="fixed inset-0 z-[85] bg-maroon-950/70 backdrop-blur-sm"
+              className="fixed inset-0 z-[85] bg-peacock-950/70 backdrop-blur-sm"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -60,7 +60,7 @@ export function PhotoManager({ open, onClose }: { open: boolean; onClose: () => 
               role="dialog"
               aria-modal="true"
               aria-label="Photo manager"
-              className="fixed inset-y-0 right-0 z-[86] flex w-full max-w-md flex-col border-l border-gold-200/20 bg-maroon-900/95 shadow-[-40px_0_80px_-40px_rgba(0,0,0,0.9)] backdrop-blur-2xl"
+              className="fixed inset-y-0 right-0 z-[86] flex w-full max-w-md flex-col border-l border-gold-200/20 bg-peacock-900/95 shadow-[-40px_0_80px_-40px_rgba(0,0,0,0.9)] backdrop-blur-2xl"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -94,7 +94,7 @@ export function PhotoManager({ open, onClose }: { open: boolean; onClose: () => 
                 </div>
 
                 {error && (
-                  <p className="mt-3 rounded-xl border border-rose-500/40 bg-rose-500/10 px-3 py-2 text-[0.6rem] text-blush-200">
+                  <p className="mt-3 rounded-xl border border-rosegold-500/40 bg-rosegold-500/10 px-3 py-2 text-[0.6rem] text-rosegold-200">
                     {error}
                   </p>
                 )}
@@ -126,9 +126,9 @@ export function PhotoManager({ open, onClose }: { open: boolean; onClose: () => 
                           return (
                             <li
                               key={photo.id}
-                              className="flex items-center gap-3 rounded-xl border border-gold-200/12 bg-maroon-950/35 p-2.5"
+                              className="flex items-center gap-3 rounded-xl border border-gold-200/12 bg-peacock-950/35 p-2.5"
                             >
-                              <div className="relative h-14 w-11 shrink-0 overflow-hidden rounded-md border border-gold-200/25 bg-maroon-950">
+                              <div className="relative h-14 w-11 shrink-0 overflow-hidden rounded-md border border-gold-200/25 bg-peacock-950">
                                 {preview ? (
                                   <img
                                     src={preview}
@@ -145,7 +145,7 @@ export function PhotoManager({ open, onClose }: { open: boolean; onClose: () => 
                                   </span>
                                 )}
                                 {overrides[photo.id] && (
-                                  <span className="absolute inset-x-0 bottom-0 bg-maroon-950/85 py-0.5 text-center text-[0.4rem] uppercase tracking-[0.1em] text-gold-200/80">
+                                  <span className="absolute inset-x-0 bottom-0 bg-peacock-950/85 py-0.5 text-center text-[0.4rem] uppercase tracking-[0.1em] text-gold-200/80">
                                     Uploaded
                                   </span>
                                 )}
@@ -185,7 +185,7 @@ export function PhotoManager({ open, onClose }: { open: boolean; onClose: () => 
                                   <button
                                     type="button"
                                     onClick={() => void remove(photo.id)}
-                                    className="grid h-8 w-8 place-items-center rounded-full border border-rose-400/25 text-blush-300/80 transition-colors hover:bg-rose-500/15"
+                                    className="grid h-8 w-8 place-items-center rounded-full border border-rose-400/25 text-rosegold-300/80 transition-colors hover:bg-rosegold-500/15"
                                     aria-label={`Remove uploaded photo for ${photo.label}`}
                                     title="Remove uploaded photo"
                                   >
@@ -229,11 +229,11 @@ export function PhotoManagerButton({ onClick }: { onClick: () => void }) {
     <button
       type="button"
       onClick={onClick}
-      className="group fixed bottom-4 right-4 z-[70] grid h-11 w-11 place-items-center rounded-full border border-gold-200/40 bg-maroon-900/80 text-gold-200 shadow-[0_18px_40px_-20px_rgba(0,0,0,0.95)] backdrop-blur-md transition-all duration-300 hover:border-gold-200/80 hover:bg-gold-200/10 sm:bottom-6 sm:right-6"
+      className="group fixed bottom-4 right-4 z-[70] grid h-11 w-11 place-items-center rounded-full border border-gold-200/40 bg-peacock-900/80 text-gold-200 shadow-[0_18px_40px_-20px_rgba(0,0,0,0.95)] backdrop-blur-md transition-all duration-300 hover:border-gold-200/80 hover:bg-gold-200/10 sm:bottom-6 sm:right-6"
       aria-label="Open the photo manager to add or replace photographs"
     >
       <ImagePlus className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
-      <span className="pointer-events-none absolute bottom-full right-0 mb-2 whitespace-nowrap rounded-full border border-gold-200/20 bg-maroon-950/90 px-3 py-1 text-[0.5rem] uppercase tracking-[0.18em] text-gold-200/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+      <span className="pointer-events-none absolute bottom-full right-0 mb-2 whitespace-nowrap rounded-full border border-gold-200/20 bg-peacock-950/90 px-3 py-1 text-[0.5rem] uppercase tracking-[0.18em] text-gold-200/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
         Manage photos
       </span>
     </button>

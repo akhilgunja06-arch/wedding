@@ -18,7 +18,7 @@ interface Petal {
   life: number;
 }
 
-const TONES = ['#fffaf2', '#fdf0e2', '#fbe6e6', '#f6e8c2', '#f4cdd0'];
+const TONES = ['#fffdf5', '#f9f3e6', '#f0d6cb', '#f4e6c6', '#e3bda9'];
 
 function makePetal(width: number, height: number, dust = false): Petal {
   return {
