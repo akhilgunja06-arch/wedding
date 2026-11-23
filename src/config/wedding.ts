@@ -41,7 +41,38 @@ export interface Deity {
   mantraLatin: string;
   description: string;
   image: string;
+  /** Optional WebP version of `image`; the JPEG remains the fallback. */
+  imageWebp?: string;
   alt: string;
+  credit: string;
+  creditUrl: string;
+  /** True only for an authentic photograph of the original deity. */
+  isPhotograph: boolean;
+}
+
+/** One frame of the slow devotional background slideshow. */
+export interface DevotionalSlide {
+  id: string;
+  /** Wide crop for tablets and desktops. */
+  desktop: string;
+  /** Tall crop for phones. */
+  mobile: string;
+  alt: string;
+  /** `cover` fills the screen; `contain` keeps a deity portrait uncropped. */
+  fit: 'cover' | 'contain';
+  focus: string;
+  caption?: string;
+  credit?: string;
+  creditUrl?: string;
+}
+
+/** A temple photograph shown in the devotional gallery. */
+export interface TemplePhoto {
+  id: string;
+  src: string;
+  alt: string;
+  title: string;
+  telugu: string;
   credit: string;
   creditUrl: string;
 }
@@ -97,10 +128,18 @@ export const wedding = {
   },
 
   messages: {
-    blessingTelugu: 'శ్రీ వెంకటేశ్వర స్వామి వారి ఆశీస్సులతో',
+    /** Opening screen — devotional welcome */
+    openingMantraTelugu: 'శ్రీ వేంకటేశ్వరాయ నమః',
+    openingBlessingVenkateswaraTelugu: 'శ్రీ వెంకటేశ్వర స్వామి వారి దివ్య ఆశీస్సులతో',
+    openingBlessingPadmavathiTelugu: 'శ్రీ పద్మావతి అమ్మవారి కృపాకటాక్షాలతో',
+    openingCoupleTelugu: 'తనుషా ❤️ మహేష్',
+    openingWelcomeTelugu: 'శుభవివాహ ఆహ్వానం',
+    openingHint: 'Scroll to enter the invitation',
+    openingMusicPrompt: 'Play the nadaswaram',
+    blessingTelugu: 'శ్రీ వెంకటేశ్వర స్వామి వారి దివ్య ఆశీస్సులతో',
     blessingEnglish:
       'With the divine blessings of Lord Venkateswara, we invite you to celebrate the wedding of Tanusha and Mahesh.',
-    welcomeTelugu: 'శుభ వివాహ ఆహ్వానం',
+    welcomeTelugu: 'శుభవివాహ ఆహ్వానం',
     welcomeSubtitle: 'With the blessings of our families',
     welcomeEnglish:
       'With immense joy and happiness, we cordially invite you and your family to celebrate our wedding ceremony.',
@@ -156,23 +195,133 @@ export const wedding = {
   artwork: {
     venkateswaraImage,
     padmavathiImage,
-    mandapImage: '/images/mandap.jpg',
   },
+
+  /**
+   * Slow devotional background slideshow.
+   * Temple photographs fill the frame; deity portraits are shown uncropped.
+   */
+  devotionalSlides: [
+    {
+      id: 'tirumala-temple',
+      desktop: '/images/tirumala-temple-desk.webp',
+      mobile: '/images/tirumala-temple-mob.webp',
+      alt: 'Sri Venkateswara Swamy Temple at Tirumala with its gopuram and the Seshachalam hills',
+      fit: 'cover',
+      focus: 'center 42%',
+      caption: 'Tirumala · శ్రీ వేంకటేశ్వర స్వామి ఆలయం',
+      credit: 'Adityamadhav83 · CC BY-SA 3.0',
+      creditUrl: 'https://commons.wikimedia.org/wiki/File:A_View_of_Tirumala_Venkateswara_Temple.JPG',
+    },
+    {
+      id: 'tiruchanur-temple',
+      desktop: '/images/tiruchanur-temple-desk.webp',
+      mobile: '/images/tiruchanur-temple-mob.webp',
+      alt: 'Golden shrine of Sri Padmavathi Ammavaru reflected in the temple tank at Tiruchanur',
+      fit: 'cover',
+      focus: 'center 52%',
+      caption: 'Tiruchanur · శ్రీ పద్మావతి అమ్మవారి ఆలయం',
+      credit: 'Malyadri · CC BY-SA 3.0',
+      creditUrl: 'https://commons.wikimedia.org/wiki/File:Tiruchanur_19.JPG',
+    },
+    {
+      id: 'tirumala-dwaram',
+      desktop: '/images/tirumala-dwaram-desk.webp',
+      mobile: '/images/tirumala-dwaram-mob.webp',
+      alt: 'The white gopuram of the Maha Dwaram at the Tirumala temple',
+      fit: 'cover',
+      focus: 'center 22%',
+      caption: 'Maha Dwaram · మహా ద్వారం',
+      credit: 'eclicks_by_bunny · CC BY-SA 4.0',
+      creditUrl: 'https://commons.wikimedia.org/wiki/File:Maha_Dwaram_of_Venkateswara_temples,_Tirupati.jpg',
+    },
+    {
+      id: 'venkateswara',
+      desktop: '/images/venkateswara.webp',
+      mobile: '/images/venkateswara.webp',
+      alt: 'Sri Venkateswara Swamy of Tirumala adorned with flowers and golden ornaments',
+      fit: 'contain',
+      focus: 'center 30%',
+      caption: 'శ్రీ వేంకటేశ్వర స్వామి',
+    },
+    {
+      id: 'tirumala-lamps',
+      desktop: '/images/tirumala-lamps-desk.webp',
+      mobile: '/images/tirumala-lamps-mob.webp',
+      alt: 'Colourful hanging festival lamps at the Tirumala temple',
+      fit: 'cover',
+      focus: 'center 45%',
+      caption: 'Festival lamps · తిరుమల దీపాలు',
+      credit: 'vijay chennupati · CC BY 2.0',
+      creditUrl: 'https://commons.wikimedia.org/wiki/File:A_decoration_at_Tirumala_Tirupati_temple.jpg',
+    },
+    {
+      id: 'padmavathi',
+      desktop: '/images/padmavathi.webp',
+      mobile: '/images/padmavathi.webp',
+      alt: 'Traditional devotional artwork of Sri Padmavathi Ammavaru beneath a golden temple arch',
+      fit: 'contain',
+      focus: 'center 30%',
+      caption: 'శ్రీ పద్మావతి అమ్మవారు',
+    },
+  ] as DevotionalSlide[],
+
+  /** Temple photography for the devotional gallery. */
+  templePhotos: [
+    {
+      id: 'tirumala',
+      src: '/images/tirumala-temple-desk.webp',
+      alt: 'Sri Venkateswara Swamy Temple at Tirumala with the Seshachalam hills behind',
+      title: 'Tirumala Temple',
+      telugu: 'తిరుమల ఆలయం',
+      credit: 'Adityamadhav83 · CC BY-SA 3.0',
+      creditUrl: 'https://commons.wikimedia.org/wiki/File:A_View_of_Tirumala_Venkateswara_Temple.JPG',
+    },
+    {
+      id: 'dwaram',
+      src: '/images/tirumala-dwaram-desk.webp',
+      alt: 'The Maha Dwaram gopuram of the Tirumala temple',
+      title: 'Maha Dwaram',
+      telugu: 'మహా ద్వారం',
+      credit: 'eclicks_by_bunny · CC BY-SA 4.0',
+      creditUrl: 'https://commons.wikimedia.org/wiki/File:Maha_Dwaram_of_Venkateswara_temples,_Tirupati.jpg',
+    },
+    {
+      id: 'tiruchanur',
+      src: '/images/tiruchanur-temple-desk.webp',
+      alt: 'Golden shrine of Sri Padmavathi Ammavaru at Tiruchanur reflected in the temple tank',
+      title: 'Tiruchanur Temple',
+      telugu: 'తిరుచానూరు ఆలయం',
+      credit: 'Malyadri · CC BY-SA 3.0',
+      creditUrl: 'https://commons.wikimedia.org/wiki/File:Tiruchanur_19.JPG',
+    },
+    {
+      id: 'lamps',
+      src: '/images/tirumala-lamps-desk.webp',
+      alt: 'Colourful festival lamps hanging at the Tirumala temple',
+      title: 'Festival Lamps',
+      telugu: 'తిరుమల దీపాలు',
+      credit: 'vijay chennupati · CC BY 2.0',
+      creditUrl: 'https://commons.wikimedia.org/wiki/File:A_decoration_at_Tirumala_Tirupati_temple.jpg',
+    },
+  ] as TemplePhoto[],
 
   /** The divine couple honoured in the devotional section. */
   deities: [
     {
       id: 'venkateswara',
       name: 'Sri Venkateswara Swamy',
-      teluguName: 'శ్రీ వేంకటేశ్వర స్వామి',
+      teluguName: 'శ్రీ వెంకటేశ్వర స్వామి',
       mantraTelugu: 'శ్రీ వెంకటేశ్వరాయ నమః',
       mantraLatin: 'Om Namo Venkatesaya',
       description:
         'The presiding deity of Tirumala, worshipped as Lord Vishnu, the protector of the universe.',
       image: venkateswaraImage,
-      alt: 'Sri Venkateswara Swamy adorned with golden ornaments and colourful flower garlands',
-      credit: 'Photo: Megala Shankar · CC BY-SA 4.0 · Wikimedia Commons',
+      imageWebp: '/images/venkateswara.webp',
+      alt: 'Sri Venkateswara Swamy of Tirumala adorned with golden ornaments and colourful flower garlands',
+      credit: 'Photograph: Megala Shankar · CC BY-SA 4.0 · Wikimedia Commons',
       creditUrl: 'https://commons.wikimedia.org/wiki/File:Lord_Venkateswara_Swamy.jpg',
+      isPhotograph: true,
     },
     {
       id: 'padmavathi',
@@ -183,9 +332,11 @@ export const wedding = {
       description:
         'Goddess Padmavathi, the consort of Lord Venkateswara, worshipped at Tiruchanur.',
       image: padmavathiImage,
-      alt: 'Goddess Sri Padmavathi Ammavaru seated beneath an ornate golden temple arch',
-      credit: 'Artwork: Banksboomer · CC BY-SA 4.0 · Wikimedia Commons',
+      imageWebp: '/images/padmavathi.webp',
+      alt: 'Traditional devotional artwork of Goddess Sri Padmavathi Ammavaru beneath a golden temple arch',
+      credit: 'Traditional devotional artwork: Banksboomer · CC BY-SA 4.0 · Wikimedia Commons',
       creditUrl: 'https://commons.wikimedia.org/wiki/File:Goddess_Padmavati.jpg',
+      isPhotograph: false,
     },
   ] as Deity[],
 

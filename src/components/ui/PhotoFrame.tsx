@@ -70,17 +70,17 @@ export function PhotoFrame({
                   onStatus?.(photo.id, 'error');
                 }}
               />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-maroon-950/75 via-transparent to-transparent opacity-70" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-peacock-950/75 via-transparent to-transparent opacity-70" />
               <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-gold-200/20" />
 
               {onOpen && (
                 <button
                   type="button"
                   onClick={() => onOpen(photo.id)}
-                  className="absolute inset-0 z-10 flex items-end justify-center pb-4 focus-visible:bg-maroon-950/30"
+                  className="absolute inset-0 z-10 flex items-end justify-center pb-4 focus-visible:bg-peacock-950/30"
                   aria-label={`Open ${photo.label} in the full screen photo viewer`}
                 >
-                  <span className="flex items-center gap-2 rounded-full border border-gold-200/40 bg-maroon-950/70 px-4 py-2 text-[0.6rem] uppercase tracking-[0.24em] text-gold-200 opacity-0 backdrop-blur-sm transition-opacity duration-500 group-hover:opacity-100 group-focus-within:opacity-100">
+                  <span className="flex items-center gap-2 rounded-full border border-gold-200/40 bg-peacock-950/70 px-4 py-2 text-[0.6rem] uppercase tracking-[0.24em] text-gold-200 opacity-0 backdrop-blur-sm transition-opacity duration-500 group-hover:opacity-100 group-focus-within:opacity-100">
                     <Maximize2 className="h-3.5 w-3.5" aria-hidden="true" />
                     View
                   </span>
@@ -90,7 +90,7 @@ export function PhotoFrame({
               <button
                 type="button"
                 onClick={pickFile}
-                className="absolute right-2.5 top-2.5 z-20 grid h-9 w-9 place-items-center rounded-full border border-gold-200/40 bg-maroon-950/70 text-gold-200 opacity-0 backdrop-blur-sm transition-all duration-300 hover:bg-maroon-900/90 focus-visible:opacity-100 group-hover:opacity-100"
+                className="absolute right-2.5 top-2.5 z-20 grid h-9 w-9 place-items-center rounded-full border border-gold-200/40 bg-peacock-950/70 text-gold-200 opacity-0 backdrop-blur-sm transition-all duration-300 hover:bg-peacock-900/90 focus-visible:opacity-100 group-hover:opacity-100"
                 aria-label={`Replace photo for ${photo.label}`}
                 title="Replace photo"
               >

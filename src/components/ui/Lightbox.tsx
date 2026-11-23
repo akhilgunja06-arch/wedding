@@ -56,7 +56,7 @@ export function Lightbox({ photos, index, onClose, onNavigate }: LightboxProps) 
     <AnimatePresence>
       {open && current && (
         <motion.div
-          className="fixed inset-0 z-[90] flex flex-col bg-maroon-950/96 backdrop-blur-xl"
+          className="fixed inset-0 z-[90] flex flex-col bg-peacock-950/96 backdrop-blur-xl"
           role="dialog"
           aria-modal="true"
           aria-label={`Photo viewer: ${current.label}`}
@@ -90,7 +90,7 @@ export function Lightbox({ photos, index, onClose, onNavigate }: LightboxProps) 
             <button
               type="button"
               onClick={() => go(-1)}
-              className="absolute left-1 z-20 grid h-11 w-11 place-items-center rounded-full border border-gold-200/35 bg-maroon-950/60 text-gold-100 backdrop-blur-sm transition-colors hover:bg-gold-200/10 sm:left-6 sm:h-12 sm:w-12"
+              className="absolute left-1 z-20 grid h-11 w-11 place-items-center rounded-full border border-gold-200/35 bg-peacock-950/60 text-gold-100 backdrop-blur-sm transition-colors hover:bg-gold-200/10 sm:left-6 sm:h-12 sm:w-12"
               aria-label="Previous photo"
             >
               <ChevronLeft className="h-5 w-5" aria-hidden="true" />
@@ -105,7 +105,7 @@ export function Lightbox({ photos, index, onClose, onNavigate }: LightboxProps) 
                 exit={reduced ? undefined : { opacity: 0, scale: 1.01 }}
                 transition={{ duration: 0.45, ease: [0.2, 0.8, 0.2, 1] }}
               >
-                <div className="relative max-h-[74vh] rounded-[1.2rem] border border-gold-200/30 bg-maroon-900/40 p-2 shadow-[0_40px_120px_-40px_rgba(0,0,0,0.95)]">
+                <div className="relative max-h-[74vh] rounded-[1.2rem] border border-gold-200/30 bg-peacock-900/40 p-2 shadow-[0_40px_120px_-40px_rgba(0,0,0,0.95)]">
                   {imageError ? (
                     <div className="flex h-[46vh] w-[78vw] max-w-md flex-col items-center justify-center gap-3 rounded-[0.9rem] px-6 text-center">
                       <Lotus className="h-10 w-20 opacity-70" />
@@ -130,7 +130,7 @@ export function Lightbox({ photos, index, onClose, onNavigate }: LightboxProps) 
             <button
               type="button"
               onClick={() => go(1)}
-              className="absolute right-1 z-20 grid h-11 w-11 place-items-center rounded-full border border-gold-200/35 bg-maroon-950/60 text-gold-100 backdrop-blur-sm transition-colors hover:bg-gold-200/10 sm:right-6 sm:h-12 sm:w-12"
+              className="absolute right-1 z-20 grid h-11 w-11 place-items-center rounded-full border border-gold-200/35 bg-peacock-950/60 text-gold-100 backdrop-blur-sm transition-colors hover:bg-gold-200/10 sm:right-6 sm:h-12 sm:w-12"
               aria-label="Next photo"
             >
               <ChevronRight className="h-5 w-5" aria-hidden="true" />

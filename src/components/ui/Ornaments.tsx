@@ -8,10 +8,10 @@ function GoldDefs({ id, glowId }: { id: string; glowId: string }) {
   return (
     <defs>
       <linearGradient id={id} x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stopColor="#fff8e2" />
-        <stop offset="35%" stopColor="#f0d79c" />
-        <stop offset="65%" stopColor="#c9a227" />
-        <stop offset="100%" stopColor="#8f6b14" />
+        <stop offset="0%" stopColor="#fffdf5" />
+        <stop offset="35%" stopColor="#f0dba9" />
+        <stop offset="65%" stopColor="#bf944b" />
+        <stop offset="100%" stopColor="#755622" />
       </linearGradient>
       <filter id={glowId} x="-60%" y="-60%" width="220%" height="220%">
         <feGaussianBlur stdDeviation="6" result="blur" />
@@ -176,9 +176,9 @@ export function Diya({ className = '', lit = false }: { className?: string; lit?
     <svg viewBox="0 0 64 56" className={className} aria-hidden="true" fill="none">
       <defs>
         <linearGradient id={id} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#f6e8c2" />
-          <stop offset="55%" stopColor="#c9a227" />
-          <stop offset="100%" stopColor="#7d5f12" />
+          <stop offset="0%" stopColor="#f4e6c6" />
+          <stop offset="55%" stopColor="#bf944b" />
+          <stop offset="100%" stopColor="#755622" />
         </linearGradient>
       </defs>
       {lit && (
@@ -257,9 +257,9 @@ export function TempleArch({
     >
       <defs>
         <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#f6e8c2" />
-          <stop offset="45%" stopColor="#c9a227" />
-          <stop offset="100%" stopColor="#7d5f12" />
+          <stop offset="0%" stopColor="#f4e6c6" />
+          <stop offset="45%" stopColor="#bf944b" />
+          <stop offset="100%" stopColor="#755622" />
         </linearGradient>
       </defs>
       <g stroke={`url(#${id})`} strokeWidth="1.3" strokeLinejoin="round">
@@ -295,9 +295,9 @@ export function Gopuram({ className = '' }: { className?: string }) {
     <svg viewBox="0 0 320 260" className={className} aria-hidden="true" fill="none">
       <defs>
         <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#f6e8c2" />
-          <stop offset="60%" stopColor="#c9a227" />
-          <stop offset="100%" stopColor="#7d5f12" />
+          <stop offset="0%" stopColor="#f4e6c6" />
+          <stop offset="60%" stopColor="#bf944b" />
+          <stop offset="100%" stopColor="#755622" />
         </linearGradient>
       </defs>
       <g stroke={`url(#${id})`} strokeWidth="1.2" strokeLinejoin="round">

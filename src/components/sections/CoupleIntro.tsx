@@ -23,7 +23,7 @@ export function CoupleIntro() {
 
         <div className="mt-14 grid items-center gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
           <Reveal className="order-2 lg:order-1">
-            <div className="relative mx-auto max-w-sm">
+            <div className="relative mx-auto max-w-[19rem]">
               <div className="pointer-events-none absolute -inset-8 -z-10 opacity-40" aria-hidden="true">
                 <TempleArch className="h-full w-full" opacity={0.5} />
               </div>
@@ -88,7 +88,7 @@ export function CoupleIntro() {
                   rounded="rounded-[2rem]"
                 />
               </Parallax>
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-maroon-950/95 via-maroon-950/60 to-transparent px-6 pb-7 pt-24 text-center sm:px-10 sm:pb-9">
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-peacock-950/95 via-peacock-950/60 to-transparent px-6 pb-7 pt-24 text-center sm:px-10 sm:pb-9">
                 <p className="font-display text-lg italic text-gold-100/85 sm:text-2xl">
                   On our decorated wedding stage
                 </p>

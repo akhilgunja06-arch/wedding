@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { PhotoLibraryProvider } from './lib/photoLibrary';
-import { Atmosphere } from './components/ui/Atmosphere';
+import { MusicProvider } from './lib/music';
+import { DevotionalBackground } from './components/ui/DevotionalBackground';
 import { ScrollDots, ScrollProgress, TopBar } from './components/ui/Navigation';
 import { PetalCanvas } from './components/effects/PetalCanvas';
 import { MusicPlayer } from './components/ui/MusicPlayer';
@@ -21,35 +22,37 @@ export default function App() {
 
   return (
     <PhotoLibraryProvider>
-      <a
-        href="#invitation"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-gold-300 focus:px-5 focus:py-2 focus:text-sm focus:text-maroon-950"
-      >
-        Skip to the wedding invitation
-      </a>
+      <MusicProvider>
+        <a
+          href="#invitation"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-gold-300 focus:px-5 focus:py-2 focus:text-sm focus:text-peacock-950"
+        >
+          Skip to the wedding invitation
+        </a>
 
-      <Atmosphere />
-      <ScrollProgress />
-      <TopBar />
-      <ScrollDots />
-      <PetalCanvas />
+        <DevotionalBackground />
+        <ScrollProgress />
+        <TopBar />
+        <ScrollDots />
+        <PetalCanvas />
 
-      <main>
-        <Blessing />
-        <Deities />
-        <Hero />
-        <CoupleIntro />
-        <Details />
-        <Venue />
-        <SaptaPadhi />
-        <Gallery onOpenManager={() => setPhotoManagerOpen(true)} />
-        <Family />
-        <Finale />
-      </main>
+        <main>
+          <Blessing />
+          <Deities />
+          <Hero />
+          <CoupleIntro />
+          <Details />
+          <Venue />
+          <SaptaPadhi />
+          <Gallery onOpenManager={() => setPhotoManagerOpen(true)} />
+          <Family />
+          <Finale />
+        </main>
 
-      <MusicPlayer />
-      <PhotoManagerButton onClick={() => setPhotoManagerOpen(true)} />
-      <PhotoManager open={photoManagerOpen} onClose={() => setPhotoManagerOpen(false)} />
+        <MusicPlayer />
+        <PhotoManagerButton onClick={() => setPhotoManagerOpen(true)} />
+        <PhotoManager open={photoManagerOpen} onClose={() => setPhotoManagerOpen(false)} />
+      </MusicProvider>
     </PhotoLibraryProvider>
   );
 }

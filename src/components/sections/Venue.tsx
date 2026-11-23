@@ -37,7 +37,7 @@ export function Venue() {
                 <MapIllustration className="h-full w-full" />
                 <div className="absolute inset-0 flex flex-col items-center justify-end pb-6 sm:pb-8">
                   <span className="pointer-events-none absolute h-24 w-24 animate-ping rounded-full border border-gold-300/30" />
-                  <div className="relative rounded-2xl border border-gold-200/30 bg-maroon-950/80 px-5 py-3 text-center backdrop-blur-md">
+                  <div className="relative rounded-2xl border border-gold-200/30 bg-peacock-950/80 px-5 py-3 text-center backdrop-blur-md">
                     <p className="text-[0.5rem] uppercase tracking-[0.3em] text-gold-300/70">The Venue</p>
                     <p className="font-display text-xl text-gold-100">{wedding.venue.name}</p>
                     <p className="text-[0.58rem] uppercase tracking-[0.18em] text-gold-200/60">
