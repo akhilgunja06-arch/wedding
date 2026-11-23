@@ -12,7 +12,7 @@ interface GeneratedNodes {
 
 export function useWeddingMusic() {
   const [playing, setPlaying] = useState(false);
-  const [volume, setVolumeState] = useState(0.45);
+  const [volume, setVolumeState] = useState<number>(wedding.music.defaultVolume);
   const [mode, setMode] = useState<MusicMode>('none');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -144,13 +144,14 @@ export function useWeddingMusic() {
     }
   }, []);
 
-  const toggle = useCallback(async () => {
-    if (playing) {
-      audioRef.current?.pause();
-      stopGenerated();
-      setPlaying(false);
-      return;
-    }
+  const stop = useCallback(() => {
+    audioRef.current?.pause();
+    stopGenerated();
+    setPlaying(false);
+  }, [stopGenerated]);
+
+  const start = useCallback(async (): Promise<boolean> => {
+    if (playing) return true;
     setLoading(true);
     setError(null);
     try {
@@ -159,18 +160,27 @@ export function useWeddingMusic() {
         if (wedding.music.allowGeneratedFallback) {
           await startGenerated();
         } else {
-          setError('Add a music file at public/audio/wedding-theme.mp3 to enable music.');
-          setLoading(false);
-          return;
+          setError('Music is unavailable. Add a licensed track at public/audio/wedding-theme.mp3.');
+          return false;
         }
       }
       setPlaying(true);
+      return true;
     } catch {
       setError('Music could not start. Please try again.');
+      return false;
     } finally {
       setLoading(false);
     }
-  }, [playing, playFile, startGenerated, stopGenerated]);
+  }, [playing, playFile, startGenerated]);
+
+  const toggle = useCallback(async (): Promise<boolean> => {
+    if (playing) {
+      stop();
+      return false;
+    }
+    return start();
+  }, [playing, start, stop]);
 
   useEffect(() => {
     return () => {
@@ -194,5 +204,5 @@ export function useWeddingMusic() {
     setVolumeState(Math.min(1, Math.max(0, next)));
   }, []);
 
-  return { playing, loading, volume, mode, error, toggle, setVolume };
+  return { playing, loading, volume, mode, error, start, stop, toggle, setVolume };
 }

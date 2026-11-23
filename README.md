@@ -2,7 +2,7 @@
 
 A premium, cinematic Telugu Hindu wedding invitation built with React, TypeScript, Tailwind CSS, Framer Motion and Lucide icons.
 
-The experience opens with the blessings of Lord Venkateswara, welcomes guests with the couple's photographs, presents the wedding details and a live countdown, guides them through the seven sacred steps of Sapta Padhi, and closes with a warm final invitation.
+The experience opens with the blessings of Lord Venkateswara, honours Sri Venkateswara Swamy and Sri Padmavathi Ammavaru in a dedicated devotional section, welcomes guests with the couple's photographs, presents the wedding details and a live countdown, guides them through the seven sacred steps of Sapta Padhi, and closes with a warm final invitation.
 
 ---
 
@@ -33,10 +33,11 @@ Open **`src/config/wedding.ts`**. Everything a guest reads comes from here:
 | Venue name, address lines, maps search | `venue` |
 | Parents' names | `families.groomParents`, `families.brideParents` |
 | Every English and Telugu message | `messages` |
-| The seven Sapta Padhi promises | `saptaPadhi` |
+| The seven Sapta Padhi steps, vows and meanings | `saptaPadhi` |
 | Photograph slots and file names | `photos` |
 | Background music | `music` |
-| Optional Venkateswara artwork | `artwork` |
+| Devotional artwork | `artwork` |
+| Deity names, mantras and image credits | `deities` |
 
 The weekday, Google Maps links and the countdown are all derived from the date and venue fields — you never need to edit them twice.
 
@@ -81,15 +82,31 @@ Each uploaded photo has a download button in the Photo Studio. Download it, then
 
 ## 3. Music
 
-Place a licensed instrumental at **`public/audio/wedding-theme.mp3`** and it will be used. Music never autoplays: guests press the play button.
+A 90-second nadaswaram excerpt is included at **`public/audio/wedding-theme.mp3`**. It is looped at a comfortable background level.
 
-If the file is missing, a soft, generated tanpura-style ambience is played instead, so the control always works. Volume, play and pause are all available.
+* **Track:** “Tamadamen Swami” from *Thodi* — Karukurichi P. Arunachalam (nadaswaram).
+* **Licence:** [Public Domain Mark 1.0](https://creativecommons.org/publicdomain/mark/1.0/).
+* **Source:** [Archive.org — Thodi, Karukurichi P. Arunachalam](https://archive.org/details/thodi-karukurichi-p.-arunachalam).
+* **Edit:** a 90-second excerpt, loudness-normalised, with a short fade in and fade out.
+
+Music never autoplays. The floating player has a visible **Music ON / OFF** switch, a separate play/pause button, and a volume slider. Guests can leave music off and every other feature continues to work.
+
+If the file is missing, a soft, generated tanpura-style ambience is played instead, so the controls still work.
 
 ---
 
-## 4. Optional devotional artwork
+## 4. Devotional artwork
 
-`public/images/venkateswara.jpg` is displayed in the opening blessing if present. Use only artwork you have the rights to publish. Without it, the section shows a hand-drawn gold Namam emblem, lotus, temple arch and oil lamps.
+The devotional section uses two licensed images:
+
+| Image | File | Credit |
+| --- | --- | --- |
+| Sri Venkateswara Swamy | `public/images/venkateswara.jpg` | Megala Shankar · CC BY-SA 4.0 · Wikimedia Commons |
+| Sri Padmavathi Ammavaru | `public/images/padmavathi.jpg` | Banksboomer · CC BY-SA 4.0 · Wikimedia Commons |
+
+Both images were cropped to a 3:4 portrait, resized to 900 × 1200, and adjusted for brightness, contrast and clarity without altering faces, ornaments or religious symbols. The adapted images remain available under CC BY-SA 4.0. Full source links and licence details are in **[ASSET-CREDITS.md](ASSET-CREDITS.md)** and in the small credit line beneath each image on the site.
+
+`public/images/venkateswara.jpg` is also used as a subtle backdrop in the opening blessing. Without the files, the section falls back to the hand-drawn gold Namam emblem, lotus, temple arch and oil lamps.
 
 ---
 

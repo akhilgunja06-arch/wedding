@@ -69,7 +69,13 @@ export function SaptaPadhi() {
           telugu={wedding.messages.saptaTelugu}
         />
 
-        <Reveal className="mt-12">
+        <Reveal className="mt-6" delay={0.05}>
+          <p className="body-lux mx-auto max-w-2xl text-center text-sm sm:text-base">
+            {wedding.messages.saptaIntro}
+          </p>
+        </Reveal>
+
+        <Reveal className="mt-10" delay={0.1}>
           <div className="ornate-card relative overflow-hidden rounded-[2rem] px-4 pb-8 pt-7 sm:px-10 sm:pb-10">
             <FrameCorners size={56} className="opacity-40" />
 
@@ -91,7 +97,11 @@ export function SaptaPadhi() {
               </p>
             </div>
 
-            <div className="relative mt-7 flex items-start justify-center gap-0.5 overflow-x-auto pb-2 no-scrollbar sm:gap-3">
+            <div
+              className="relative mt-7 flex items-start justify-center gap-0.5 overflow-x-auto pb-2 no-scrollbar sm:gap-3"
+              role="tablist"
+              aria-label="The seven Sapta Padhi steps"
+            >
               {steps.map((item, stepIndex) => {
                 const active = stepIndex === index;
                 const passed = stepIndex < index;
@@ -100,8 +110,9 @@ export function SaptaPadhi() {
                     key={item.number}
                     type="button"
                     onClick={() => goTo(stepIndex)}
-                    aria-label={`Go to step ${stepIndex + 1}: ${item.title}`}
-                    aria-current={active ? 'step' : undefined}
+                    role="tab"
+                    aria-selected={active}
+                    aria-label={`Step ${stepIndex + 1}: ${item.title} (${item.vowWordLatin})`}
                     className={`group flex min-w-[2.1rem] flex-col items-center gap-1 rounded-xl px-0.5 py-1 transition-colors duration-300 sm:min-w-[2.6rem] sm:px-1 ${
                       active ? 'text-gold-100' : 'text-gold-200/45 hover:text-gold-200/80'
                     }`}
@@ -124,7 +135,7 @@ export function SaptaPadhi() {
               })}
             </div>
 
-            <div className="relative mt-5 min-h-[22rem] sm:min-h-[20rem]">
+            <div className="relative mt-5 min-h-[32rem] sm:min-h-[30rem]">
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={step.number}
@@ -159,14 +170,32 @@ export function SaptaPadhi() {
                     {step.titleTelugu}
                   </p>
 
+                  <div className="vow-seal mt-4">
+                    <span lang="te" className="font-telugu text-gold-gradient text-2xl leading-none">
+                      {step.vowWord}
+                    </span>
+                    <span className="text-[0.48rem] uppercase tracking-[0.28em] text-gold-300/55">
+                      {step.vowWordLatin}
+                    </span>
+                  </div>
+
                   <div className="relative mt-5 w-full max-w-2xl rounded-2xl border border-gold-300/20 bg-maroon-950/45 px-4 py-5 backdrop-blur-sm sm:px-7">
                     <Lotus className="mx-auto -mt-9 h-6 w-12 opacity-80" />
-                    <p lang="te" className="font-telugu text-base leading-[1.9] text-gold-100 sm:text-lg">
-                      “{step.promiseTelugu}”
+                    <p className="text-[0.5rem] uppercase tracking-[0.3em] text-gold-300/50">
+                      Traditional vow
+                    </p>
+                    <p lang="te" className="font-telugu mt-2 text-base leading-[1.9] text-gold-100 sm:text-lg">
+                      “{step.vowTelugu}”
                     </p>
                     <div className="gold-rule mx-auto my-4 w-24" />
-                    <p className="body-lux text-sm italic text-gold-200/80 sm:text-base">
-                      {step.promiseEnglish}
+                    <p className="text-[0.5rem] uppercase tracking-[0.3em] text-gold-300/50">
+                      Simple meaning
+                    </p>
+                    <p lang="te" className="font-telugu mt-1 text-sm leading-[1.9] text-gold-200/90 sm:text-base">
+                      {step.meaningTelugu}
+                    </p>
+                    <p className="body-lux mt-3 text-sm italic text-gold-200/70">
+                      {step.meaningEnglish}
                     </p>
                   </div>
 
@@ -177,7 +206,22 @@ export function SaptaPadhi() {
                       transition={{ duration: 0.8, delay: 0.25 }}
                       className="mt-6 w-full max-w-2xl rounded-2xl border border-gold-300/30 bg-gradient-to-br from-gold-500/10 to-transparent px-5 py-5"
                     >
-                      <p className="font-display text-base tracking-[0.14em] text-gold-gradient sm:text-lg">
+                      <p className="text-[0.52rem] uppercase tracking-[0.28em] text-gold-300/60">
+                        {wedding.messages.saptaFinalHeading}
+                      </p>
+                      <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
+                        {steps.map((item) => (
+                          <span
+                            key={item.number}
+                            className="rounded-full border border-gold-300/25 bg-gold-200/5 px-2.5 py-1 text-[0.5rem] uppercase tracking-[0.14em] text-gold-200/70"
+                          >
+                            <span lang="te" className="font-telugu text-[0.62rem]">
+                              {item.vowWord}
+                            </span>
+                          </span>
+                        ))}
+                      </div>
+                      <p className="font-display text-gold-gradient mt-4 text-base tracking-[0.14em] sm:text-lg">
                         {wedding.messages.saptaFinalLine}
                       </p>
                       <p lang="te" className="font-telugu mt-2 text-sm leading-[1.9] text-gold-200/80">
@@ -206,7 +250,14 @@ export function SaptaPadhi() {
               </button>
 
               <div className="flex flex-1 flex-col items-center gap-2 px-2">
-                <div className="flex w-full max-w-[12rem] gap-1" aria-hidden="true">
+                <div
+                  className="flex w-full max-w-[12rem] gap-1"
+                  role="progressbar"
+                  aria-valuemin={1}
+                  aria-valuemax={steps.length}
+                  aria-valuenow={index + 1}
+                  aria-label={`Sapta Padhi progress: step ${index + 1} of ${steps.length}`}
+                >
                   {steps.map((item, stepIndex) => (
                     <span
                       key={item.number}
@@ -222,7 +273,11 @@ export function SaptaPadhi() {
               </div>
 
               {isLast ? (
-                <a href="#gallery" className="btn-outline-gold px-4 py-2.5 text-[0.58rem] sm:px-5">
+                <a
+                  href="#gallery"
+                  className="btn-outline-gold px-4 py-2.5 text-[0.58rem] sm:px-5"
+                  aria-label="Go to the photo gallery"
+                >
                   <span className="hidden sm:inline">Gallery</span>
                   <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </a>

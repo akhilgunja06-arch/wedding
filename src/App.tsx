@@ -6,6 +6,7 @@ import { PetalCanvas } from './components/effects/PetalCanvas';
 import { MusicPlayer } from './components/ui/MusicPlayer';
 import { PhotoManager, PhotoManagerButton } from './components/admin/PhotoManager';
 import { Blessing } from './components/sections/Blessing';
+import { Deities } from './components/sections/Deities';
 import { Hero } from './components/sections/Hero';
 import { CoupleIntro } from './components/sections/CoupleIntro';
 import { Details } from './components/sections/Details';
@@ -35,6 +36,7 @@ export default function App() {
 
       <main>
         <Blessing />
+        <Deities />
         <Hero />
         <CoupleIntro />
         <Details />

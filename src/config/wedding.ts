@@ -22,10 +22,32 @@ export interface SaptaPadhiStep {
   number: string;
   title: string;
   titleTelugu: string;
-  promiseTelugu: string;
-  promiseEnglish: string;
+  /** Traditional vow word chanted with the step, in Telugu script and transliteration. */
+  vowWord: string;
+  vowWordLatin: string;
+  /** Short traditional Telugu sentence for the step. */
+  vowTelugu: string;
+  /** Simple Telugu meaning of the vow. */
+  meaningTelugu: string;
+  meaningEnglish: string;
   icon: 'grain' | 'strength' | 'prosperity' | 'happiness' | 'family' | 'friendship' | 'forever';
 }
+
+export interface Deity {
+  id: string;
+  name: string;
+  teluguName: string;
+  mantraTelugu: string;
+  mantraLatin: string;
+  description: string;
+  image: string;
+  alt: string;
+  credit: string;
+  creditUrl: string;
+}
+
+const venkateswaraImage = '/images/venkateswara.jpg';
+const padmavathiImage = '/images/padmavathi.jpg';
 
 export const wedding = {
   couple: {
@@ -84,6 +106,14 @@ export const wedding = {
       'With immense joy and happiness, we cordially invite you and your family to celebrate our wedding ceremony.',
     welcomeTeluguMessage:
       'మా వివాహ మహోత్సవానికి విచ్చేసి నూతన వధూవరులను ఆశీర్వదించవలసిందిగా మనస్ఫూర్తిగా ఆహ్వానిస్తున్నాము.',
+    deitiesEyebrow: 'Divine Blessings',
+    deitiesTitle: 'WITH THE GRACE OF THE DIVINE',
+    deitiesTelugu: 'శ్రీ వేంకటేశ్వర స్వామి · శ్రీ పద్మావతి అమ్మవారు ఆశీస్సులతో',
+    deitiesIntro:
+      'We begin our celebrations at the lotus feet of Lord Venkateswara and Goddess Padmavathi, seeking their blessings for the couple.',
+    deitiesBlessingTelugu: 'శ్రీ వేంకటేశ్వర స్వామి కరుణతో · శ్రీ పద్మావతి అమ్మవారి ఆశీస్సులతో',
+    deitiesBlessingEnglish:
+      'May the divine couple bless Tanusha and Mahesh with love, harmony and a lifetime of togetherness.',
     detailsHeading: 'Wedding Celebration',
     detailsTelugu: 'వివాహ వేడుక',
     storyQuote:
@@ -91,9 +121,12 @@ export const wedding = {
     storyTelugu: 'రెండు హృదయాలు... ఒకే వాగ్దానం... జీవితాంతం ఒకే ప్రయాణం.',
     saptaTitle: 'THE SEVEN SACRED STEPS',
     saptaTelugu: 'సప్తపది – జీవితాంతం కలిసి నడిచే ఏడు అడుగులు',
+    saptaIntro:
+      'Before the sacred fire, the bride and groom take seven steps together. Each step is a vow that shapes a shared life.',
+    saptaFinalHeading: 'SEVEN STEPS · SEVEN PROMISES · ONE LIFETIME',
     saptaFinalLine: 'SEVEN STEPS, ONE BEAUTIFUL JOURNEY, FOREVER.',
     saptaFinalTelugu:
-      'ఏడు అడుగులు... ఒకటైన రెండు హృదయాలు... జీవితాంతం ఒకటే ప్రయాణం.',
+      'ఏడు పవిత్ర వాగ్దానాలు... ఒకే అందమైన ప్రయాణం... జీవితాంతం కలిసి.',
     galleryHeading: 'Moments of Us',
     galleryTelugu: 'మా అందమైన క్షణాలు',
     familyHeading: 'Together With Our Families',
@@ -107,19 +140,54 @@ export const wedding = {
     footerNote: 'Thank you for celebrating with us.',
   },
 
-  /** Optional background music. Drop an MP3 at /public/audio/wedding-theme.mp3. */
+  /** Background music. The included track is a public-domain nadaswaram recording. */
   music: {
     src: '/audio/wedding-theme.mp3',
-    title: 'Traditional Wedding Instrumental',
+    title: 'Nadaswaram — Traditional Wedding Instrumental',
+    credit: 'Karukurichi P. Arunachalam · “Tamadamen Swami” · Public Domain Mark 1.0',
+    creditUrl: 'https://archive.org/details/thodi-karukurichi-p.-arunachalam',
+    /** Comfortable background level; the player starts at this volume. */
+    defaultVolume: 0.5,
     /** If no file is found, a soft, generated tanpura ambience is used instead. */
     allowGeneratedFallback: true,
   },
 
-  /** Optional devotional artwork. Drop a licensed image at this path to display it. */
+  /** Devotional artwork used by the blessing and deity sections. */
   artwork: {
-    venkateswaraImage: '/images/venkateswara.jpg',
+    venkateswaraImage,
+    padmavathiImage,
     mandapImage: '/images/mandap.jpg',
   },
+
+  /** The divine couple honoured in the devotional section. */
+  deities: [
+    {
+      id: 'venkateswara',
+      name: 'Sri Venkateswara Swamy',
+      teluguName: 'శ్రీ వేంకటేశ్వర స్వామి',
+      mantraTelugu: 'శ్రీ వెంకటేశ్వరాయ నమః',
+      mantraLatin: 'Om Namo Venkatesaya',
+      description:
+        'The presiding deity of Tirumala, worshipped as Lord Vishnu, the protector of the universe.',
+      image: venkateswaraImage,
+      alt: 'Sri Venkateswara Swamy adorned with golden ornaments and colourful flower garlands',
+      credit: 'Photo: Megala Shankar · CC BY-SA 4.0 · Wikimedia Commons',
+      creditUrl: 'https://commons.wikimedia.org/wiki/File:Lord_Venkateswara_Swamy.jpg',
+    },
+    {
+      id: 'padmavathi',
+      name: 'Sri Padmavathi Ammavaru',
+      teluguName: 'శ్రీ పద్మావతి అమ్మవారు',
+      mantraTelugu: 'శ్రీ పద్మావత్యై నమః',
+      mantraLatin: 'Om Sri Padmavatyai Namah',
+      description:
+        'Goddess Padmavathi, the consort of Lord Venkateswara, worshipped at Tiruchanur.',
+      image: padmavathiImage,
+      alt: 'Goddess Sri Padmavathi Ammavaru seated beneath an ornate golden temple arch',
+      credit: 'Artwork: Banksboomer · CC BY-SA 4.0 · Wikimedia Commons',
+      creditUrl: 'https://commons.wikimedia.org/wiki/File:Goddess_Padmavati.jpg',
+    },
+  ] as Deity[],
 
   /**
    * Photograph slots. Put your originals in /public/photos using these exact
@@ -170,75 +238,100 @@ export const wedding = {
     { id: 'pre-wedding', label: 'Pre-Wedding Photo', src: '/photos/pre-wedding.jpg', group: 'couple', orientation: 'landscape' },
   ] as PhotoSlot[],
 
+  /**
+   * The seven Sapta Padhi vows in their traditional order:
+   * nourishment, strength, prosperity, happiness, family, seasons, friendship.
+   */
   saptaPadhi: [
     {
       number: '01',
-      title: 'Together in Nourishment',
-      titleTelugu: 'ఆహారం మరియు శ్రేయస్సు',
-      promiseTelugu:
-        'మన కుటుంబానికి కావలసిన ఆహారం, ఆనందం మరియు శ్రేయస్సు కోసం కలిసి కృషి చేద్దాం.',
-      promiseEnglish:
-        'We promise to nourish each other and build a life filled with care, support and abundance.',
+      title: 'Nourishment',
+      titleTelugu: 'ఆహారం – పోషణ',
+      vowWord: 'ఇషే',
+      vowWordLatin: 'Iṣe',
+      vowTelugu: 'ఇషే పాదం — ఆహారం, పోషణ కోసం ఒక అడుగు.',
+      meaningTelugu:
+        'మనం కలిసి ఆహారాన్ని పంచుకుంటూ, ఒకరికొకరం పోషణ అందిస్తాము.',
+      meaningEnglish:
+        'We take this step for nourishment, sharing food and caring for each other.',
       icon: 'grain',
     },
     {
       number: '02',
-      title: 'Together in Strength',
-      titleTelugu: 'బలం మరియు ధైర్యం',
-      promiseTelugu:
-        'ఆరోగ్యం, ధైర్యం మరియు బలంతో ప్రతి పరిస్థితిలో ఒకరికొకరం తోడుగా నిలుద్దాం.',
-      promiseEnglish:
-        'We promise to give each other strength and stand together through every challenge.',
+      title: 'Strength',
+      titleTelugu: 'బలం – ధైర్యం',
+      vowWord: 'ఊర్జే',
+      vowWordLatin: 'Ūrje',
+      vowTelugu: 'ఊర్జే పాదం — బలం, ధైర్యం కోసం ఒక అడుగు.',
+      meaningTelugu:
+        'శారీరక, మానసిక బలాన్ని ఒకరికొకరం ఇస్తూ, ప్రతి సవాలును కలిసి ఎదుర్కొంటాము.',
+      meaningEnglish:
+        'We take this step for strength, supporting each other through every challenge.',
       icon: 'strength',
     },
     {
       number: '03',
-      title: 'Together in Prosperity',
-      titleTelugu: 'సంపద మరియు అభివృద్ధి',
-      promiseTelugu:
-        'మన కలలను నిజం చేసుకుంటూ సంపద, అభివృద్ధి మరియు సంతోషంతో ముందుకు సాగుదాం.',
-      promiseEnglish:
-        'We promise to work together and build a prosperous and meaningful future.',
+      title: 'Prosperity',
+      titleTelugu: 'సంపద – వృద్ధి',
+      vowWord: 'రాయస్పోషాయ',
+      vowWordLatin: 'Rāyaspoṣāya',
+      vowTelugu: 'రాయస్పోషాయ పాదం — సంపద, వృద్ధి కోసం ఒక అడుగు.',
+      meaningTelugu:
+        'ధర్మంగా సంపదను సమార్జించి, కలిసి అభివృద్ధి చెందుతాము.',
+      meaningEnglish:
+        'We take this step for prosperity, building a secure and meaningful future together.',
       icon: 'prosperity',
     },
     {
       number: '04',
-      title: 'Together in Happiness',
-      titleTelugu: 'సంతోషం మరియు శాంతి',
-      promiseTelugu:
-        'ప్రేమ, నవ్వులు, శాంతి మరియు సంతోషంతో మన జీవితాన్ని అందంగా మార్చుకుందాం.',
-      promiseEnglish:
-        'We promise to create a home filled with laughter, peace and happiness.',
+      title: 'Happiness',
+      titleTelugu: 'సుఖం – శాంతి',
+      vowWord: 'మాయోభవాయ',
+      vowWordLatin: 'Māyobhavāya',
+      vowTelugu: 'మాయోభవాయ పాదం — సుఖం, శాంతి కోసం ఒక అడుగు.',
+      meaningTelugu:
+        'సుఖదుఃఖాలను పంచుకుంటూ, ప్రేమతో, నవ్వుతో జీవిస్తాము.',
+      meaningEnglish:
+        'We take this step for happiness, sharing joy and sorrow in equal measure.',
       icon: 'happiness',
     },
     {
       number: '05',
-      title: 'Together in Family',
-      titleTelugu: 'కుటుంబం మరియు సంస్కారం',
-      promiseTelugu:
-        'మన కుటుంబాలను గౌరవిస్తూ ప్రేమ, సంస్కారం మరియు బాధ్యతలతో ముందుకు సాగుదాం.',
-      promiseEnglish:
-        'We promise to respect our families and nurture our home with love and values.',
+      title: 'Family',
+      titleTelugu: 'కుటుంబం – సంతానం',
+      vowWord: 'ప్రజాభ్యః',
+      vowWordLatin: 'Prajābhyaḥ',
+      vowTelugu: 'ప్రజాభ్యః పాదం — కుటుంబం, సంతానం కోసం ఒక అడుగు.',
+      meaningTelugu:
+        'మన కుటుంబాన్ని, సంతానాన్ని ప్రేమతో, సంస్కారంతో పెంచుతాము.',
+      meaningEnglish:
+        'We take this step for family, nurturing our home and future generations with love.',
       icon: 'family',
     },
     {
       number: '06',
-      title: 'Together in Friendship',
-      titleTelugu: 'స్నేహం మరియు నమ్మకం',
-      promiseTelugu:
-        'నమ్మకం, గౌరవం మరియు స్నేహంతో జీవితాంతం ఒకరికొకరం అండగా ఉందాం.',
-      promiseEnglish:
-        "We promise to be each other's best friend and share every joy and sorrow.",
+      title: 'Seasons',
+      titleTelugu: 'ఋతువులు – కాలం',
+      vowWord: 'ఋతుభ్యః',
+      vowWordLatin: 'Ṛtubhyaḥ',
+      vowTelugu: 'ఋతుభ్యః పాదం — ఋతువులు, కాలం కోసం ఒక అడుగు.',
+      meaningTelugu:
+        'ఋతువులు మారినా, కాలం మారినా ఒకరికొకరం తోడుగా ఉంటాము.',
+      meaningEnglish:
+        'We take this step for all seasons, remaining together as time and circumstances change.',
       icon: 'friendship',
     },
     {
       number: '07',
-      title: 'Together Forever',
-      titleTelugu: 'జీవితాంతం కలిసి',
-      promiseTelugu:
-        'జీవితంలోని ప్రతి మలుపులో జీవితాంతం ఒకరికొకరం తోడుగా ఉంటామని ప్రమాణం చేద్దాం.',
-      promiseEnglish:
-        'We promise to walk together forever, with unconditional love, loyalty and understanding.',
+      title: 'Friendship',
+      titleTelugu: 'స్నేహం – తోడు',
+      vowWord: 'సఖే',
+      vowWordLatin: 'Sakhe',
+      vowTelugu: 'సఖే పాదం — స్నేహం, తోడు కోసం ఒక అడుగు.',
+      meaningTelugu:
+        'జీవితాంతం స్నేహితులుగా, నమ్మకంతో, గౌరవంతో కలిసి నడుస్తాము.',
+      meaningEnglish:
+        'We take this final step as friends, walking together with trust and respect for life.',
       icon: 'forever',
     },
   ] as SaptaPadhiStep[],
