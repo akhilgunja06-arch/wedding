@@ -351,6 +351,137 @@
     linear-gradient(160deg, #3a0a10, #200406);
 }
 
+/* ---------- Devotional deity frames ---------- */
+.deity-frame {
+  position: relative;
+  padding: 8px;
+  border-radius: 1.75rem;
+  background-image: linear-gradient(
+    145deg,
+    #fff8e2 0%,
+    #c9a227 18%,
+    #f7ecc9 38%,
+    #a9821c 62%,
+    #f7ecc9 82%,
+    #c9a227 100%
+  );
+  box-shadow:
+    0 34px 70px -40px rgba(0, 0, 0, 0.95),
+    0 0 0 1px rgba(255, 248, 226, 0.28),
+    0 0 52px -16px rgba(201, 162, 39, 0.42);
+  transition:
+    transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.6s ease;
+}
+
+.deity-frame::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(23, 3, 5, 0.55);
+  pointer-events: none;
+}
+
+.deity-frame::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 1.9rem;
+  border: 1px solid rgba(233, 209, 148, 0.28);
+  pointer-events: none;
+}
+
+.group:hover .deity-frame {
+  transform: translateY(-4px);
+  box-shadow:
+    0 42px 80px -38px rgba(0, 0, 0, 0.98),
+    0 0 0 1px rgba(255, 248, 226, 0.36),
+    0 0 68px -14px rgba(201, 162, 39, 0.6);
+}
+
+.deity-frame__inner {
+  border-radius: 1.35rem;
+  background: #200406;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 248, 226, 0.2),
+    inset 0 0 44px rgba(23, 3, 5, 0.55);
+}
+
+.deity-image {
+  transition: transform 1.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.group:hover .deity-image {
+  transform: scale(1.035);
+}
+
+/* ---------- Sapta Padhi vow seal ---------- */
+.vow-seal {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.55rem 1.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(233, 209, 148, 0.3);
+  background:
+    radial-gradient(120% 140% at 50% 0%, rgba(201, 162, 39, 0.16), transparent 65%),
+    rgba(255, 250, 242, 0.03);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 12px 30px -22px rgba(201, 162, 39, 0.8);
+}
+
+/* ---------- Music on/off switch ---------- */
+.music-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.music-switch__track {
+  position: relative;
+  display: block;
+  width: 1.55rem;
+  height: 0.9rem;
+  border-radius: 999px;
+  background: rgba(233, 209, 148, 0.2);
+  box-shadow: inset 0 0 0 1px rgba(233, 209, 148, 0.2);
+  transition: background 0.3s ease;
+}
+
+.music-switch__knob {
+  position: absolute;
+  top: 50%;
+  left: 2px;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: #fff8e2;
+  transform: translateY(-50%);
+  box-shadow: 0 0 8px rgba(201, 162, 39, 0.7);
+  transition: left 0.3s ease;
+}
+
+.music-switch[aria-checked="true"] .music-switch__track {
+  background: linear-gradient(90deg, #dfbd72, #c9a227);
+}
+
+.music-switch[aria-checked="true"] .music-switch__knob {
+  left: calc(100% - 0.7rem - 2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .group:hover .deity-frame,
+  .group:hover .deity-image {
+    transform: none;
+  }
+}
+
 .photo-shell img {
   width: 100%;
   height: 100%;

@@ -6,6 +6,7 @@ export interface SectionLink {
 
 export const sectionLinks: SectionLink[] = [
   { id: 'blessings', label: 'Blessings', telugu: 'ఆశీస్సులు' },
+  { id: 'deities', label: 'Divine Blessings', telugu: 'దైవ ఆశీస్సులు' },
   { id: 'invitation', label: 'Invitation', telugu: 'ఆహ్వానం' },
   { id: 'couple', label: 'The Couple', telugu: 'వధూవరులు' },
   { id: 'details', label: 'Wedding Details', telugu: 'వివాహ వివరాలు' },

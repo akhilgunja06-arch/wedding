@@ -12,7 +12,7 @@ const bridePhoto = photoById('bride-1');
 
 export function CoupleIntro() {
   return (
-    <Section id="couple" labelledBy="couple-heading">
+    <Section id="couple" labelledBy="couple-heading" className="overflow-hidden">
       <div className="mx-auto w-full max-w-6xl">
         <SectionHeading
           id="couple-heading"
